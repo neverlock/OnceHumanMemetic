@@ -22,39 +22,39 @@ const SkillSharingApp = () => {
     '5-10-15': [
       { 
         id: 'img1_1', 
-        name: 'Sword Basic', 
-        thumbnailUrl: '/api/placeholder/60/60',
-        fullUrl: '/api/placeholder/120/120',
-        description: 'Basic sword for beginners',
-        skills: ['Attack +10', 'Durability: 50', 'Weight: Light'],
-        scenarios: ['Combat Training', 'Dungeon Exploration', 'PvP Battle']
+        name: 'Furnace: Precision Refining', 
+        thumbnailUrl: '/images/5-15/1.webp',
+        fullUrl: '/images/5-15/1.webp',
+        description: 'Resource Consumption -30%, and Smelting Time -30% when smelting Copper, Bronze, Steel, Aluminum, and Tungsten Ingots using a Furnace or Electric Furnace',
+        skills: ['Smelter', 'Gathering', 'Facility Boost: Furnace'],
+        scenarios: ['Manibus', 'Evolution\'s Call', 'Prismverse\'s Clash','Way Of Winter']
       },
       { 
         id: 'img1_2', 
-        name: 'Shield Wood', 
-        thumbnailUrl: '/api/placeholder/60/60',
-        fullUrl: '/api/placeholder/120/120',
-        description: 'Wooden shield for basic protection',
-        skills: ['Defense +8', 'Block Rate: 30%', 'Weight: Medium'],
-        scenarios: ['Defense Training', 'Team Formation', 'Castle Siege']
+        name: 'Load Handling', 
+        thumbnailUrl: '/images/5-15/2.webp',
+        fullUrl: '/images/5-15/2.webp',
+        description: 'When in your Backpack, it reduces the weight of Logs, Gravels and Ores you carry by 40%-80% Effect cannot stack',
+        skills: ['Prospector', 'Gathering', 'New Formula: Load Handling'],
+        scenarios: ['Manibus', 'Evolution\'s Call', 'Prismverse\'s Clash','Way Of Winter']
       },
       { 
         id: 'img1_3', 
-        name: 'Potion Health', 
-        thumbnailUrl: '/api/placeholder/60/60',
-        fullUrl: '/api/placeholder/120/120',
-        description: 'Restores basic health points',
-        skills: ['HP Recovery: 50', 'Usage: Instant', 'Cooldown: 5s'],
-        scenarios: ['Emergency Healing', 'Boss Fight', 'Survival Mode']
+        name: 'Pickaxe: Moonlight Mining', 
+        thumbnailUrl: '/images/5-15/3.webp',
+        fullUrl: '/images/5-15/3.webp',
+        description: 'When using the Pickaxe for Mining, increase the yield of Copper, Tin, Iron, Aluminum, and Tungsten Ore by 25%. Effect doubles at night (21:00 - 06:00)',
+        skills: ['Prospector', 'Gathering', 'Improved Formula: Pickaxe'],
+        scenarios: ['Manibus', 'Evolution\'s Call', 'Prismverse\'s Clash','Way Of Winter']
       },
       { 
         id: 'img1_4', 
-        name: 'Bow Simple', 
-        thumbnailUrl: '/api/placeholder/60/60',
-        fullUrl: '/api/placeholder/120/120',
-        description: 'Simple bow for ranged attacks',
-        skills: ['Range Attack +12', 'Accuracy: 70%', 'Range: Medium'],
-        scenarios: ['Hunting', 'Tower Defense', 'Stealth Mission']
+        name: 'Pickaxe: Forest Foe', 
+        thumbnailUrl: '/images/5-15/4.webp',
+        fullUrl: '/images/5-15/4.webp',
+        description: 'Pickaxe Durability is doubled. +30% yield when logging with the Pickaxe, and gain 150% of the resources when you completely destroy a tree',
+        skills: ['Prospector', 'Gathering', 'Improved Formula: Pickaxe'],
+        scenarios: ['Manibus', 'Evolution\'s Call', 'Prismverse\'s Clash','Way Of Winter']
       }
     ],
     '20-25-30-35': [
