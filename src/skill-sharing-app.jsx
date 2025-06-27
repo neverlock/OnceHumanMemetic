@@ -23,8 +23,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img1_1', 
         name: 'Furnace: Precision Refining', 
-        thumbnailUrl: '/images/5-15/1.webp',
-        fullUrl: '/images/5-15/1.webp',
+        thumbnailUrl: './images/5-15/1.webp',
+        fullUrl: './images/5-15/1.webp',
         description: 'Resource Consumption -30%, and Smelting Time -30% when smelting Copper, Bronze, Steel, Aluminum, and Tungsten Ingots using a Furnace or Electric Furnace',
         skills: ['Smelter', 'Gathering', 'Facility Boost: Furnace'],
         scenarios: ['Manibus', 'Evolution\'s Call', 'Prismverse\'s Clash','Way Of Winter']
@@ -32,8 +32,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img1_2', 
         name: 'Load Handling', 
-        thumbnailUrl: '/images/5-15/2.webp',
-        fullUrl: '/images/5-15/2.webp',
+        thumbnailUrl: './images/5-15/2.webp',
+        fullUrl: './images/5-15/2.webp',
         description: 'When in your Backpack, it reduces the weight of Logs, Gravels and Ores you carry by 40%-80% Effect cannot stack',
         skills: ['Prospector', 'Gathering', 'New Formula: Load Handling'],
         scenarios: ['Manibus', 'Evolution\'s Call', 'Prismverse\'s Clash','Way Of Winter']
@@ -41,8 +41,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img1_3', 
         name: 'Pickaxe: Moonlight Mining', 
-        thumbnailUrl: '/images/5-15/3.webp',
-        fullUrl: '/images/5-15/3.webp',
+        thumbnailUrl: './images/5-15/3.webp',
+        fullUrl: './images/5-15/3.webp',
         description: 'When using the Pickaxe for Mining, increase the yield of Copper, Tin, Iron, Aluminum, and Tungsten Ore by 25%. Effect doubles at night (21:00 - 06:00)',
         skills: ['Prospector', 'Gathering', 'Improved Formula: Pickaxe'],
         scenarios: ['Manibus', 'Evolution\'s Call', 'Prismverse\'s Clash','Way Of Winter']
@@ -50,8 +50,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img1_4', 
         name: 'Pickaxe: Forest Foe', 
-        thumbnailUrl: '/images/5-15/4.webp',
-        fullUrl: '/images/5-15/4.webp',
+        thumbnailUrl: './images/5-15/4.webp',
+        fullUrl: './images/5-15/4.webp',
         description: 'Pickaxe Durability is doubled. +30% yield when logging with the Pickaxe, and gain 150% of the resources when you completely destroy a tree',
         skills: ['Prospector', 'Gathering', 'Improved Formula: Pickaxe'],
         scenarios: ['Manibus', 'Evolution\'s Call', 'Prismverse\'s Clash','Way Of Winter']
