@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { Plus, Minus, GripVertical } from 'lucide-react';
+import { Plus, Minus, GripVertical, Check } from 'lucide-react';
 
 const SkillSharingApp = () => {
   const [name, setName] = useState('');
   const [selectedLevel, setSelectedLevel] = useState('');
   const [selectedLevels, setSelectedLevels] = useState({});
+  const [selectedSkillsForActive, setSelectedSkillsForActive] = useState({}); // เก็บ skill ที่ active ใน level
   const [hashCode, setHashCode] = useState('');
   const [loadInput, setLoadInput] = useState('');
   const [showSecondDropdown, setShowSecondDropdown] = useState(false);
@@ -178,6 +179,13 @@ const SkillSharingApp = () => {
     const currentSkills = selectedLevels[level] || [];
     const updatedSkills = currentSkills.filter(skill => skill.id !== skillId);
     
+    // ลบ active skill ถ้าถูกลบออก
+    if (selectedSkillsForActive[level] === skillId) {
+      const newActive = { ...selectedSkillsForActive };
+      delete newActive[level];
+      setSelectedSkillsForActive(newActive);
+    }
+    
     if (updatedSkills.length === 0) {
       // ถ้าไม่มี skill เหลือใน level นี้ ให้ลบ level ออก
       const newSelectedLevels = { ...selectedLevels };
@@ -191,10 +199,18 @@ const SkillSharingApp = () => {
     }
   };
 
+  const handleSkillActivate = (level, skillId) => {
+    setSelectedSkillsForActive({
+      ...selectedSkillsForActive,
+      [level]: skillId
+    });
+  };
+
   const handleSave = () => {
     const saveData = {
       name,
-      levels: selectedLevels
+      levels: selectedLevels,
+      activeSkills: selectedSkillsForActive
     };
     const encoded = btoa(JSON.stringify(saveData));
     setHashCode(encoded);
@@ -205,6 +221,7 @@ const SkillSharingApp = () => {
       const decoded = JSON.parse(atob(loadInput));
       setName(decoded.name || '');
       setSelectedLevels(decoded.levels || {});
+      setSelectedSkillsForActive(decoded.activeSkills || {});
       setLoadInput('');
     } catch (error) {
       alert('Invalid hash code');
@@ -216,7 +233,7 @@ const SkillSharingApp = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+      <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-8">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
           Up Skill Sharing
         </h1>
@@ -260,20 +277,20 @@ const SkillSharingApp = () => {
           </button>
         </div>
 
-        {/* Skill Selection Dropdown */}
+        {/* Skill Selection Dropdown - ปรับปรุงให้แสดงรูปใหญ่ขึ้น */}
         {showSecondDropdown && currentLevelForSelection && (
           <div className="mb-6">
             <label className="block text-lg font-medium mb-2">
               Select Skill for Level {currentLevelForSelection}
             </label>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-4 border-2 border-gray-300 rounded-lg bg-gray-50">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 border-2 border-gray-300 rounded-lg bg-gray-50">
               {imageData[levelToSkillSet[currentLevelForSelection]]?.map((skill) => (
                 <div
                   key={skill.id}
                   onClick={() => handleSkillSelect(skill.id)}
-                  className="cursor-pointer p-3 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 bg-white"
+                  className="cursor-pointer p-4 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 bg-white"
                 >
-                  <div className="w-full h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded border flex items-center justify-center mb-2 relative overflow-hidden">
+                  <div className="w-full h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded border flex items-center justify-center mb-3 relative overflow-hidden">
                     <img 
                       src={skill.thumbnailUrl} 
                       alt={skill.name}
@@ -283,9 +300,9 @@ const SkillSharingApp = () => {
                         e.target.nextElementSibling.style.display = 'flex';
                       }}
                     />
-                    <span className="text-lg hidden absolute inset-0 items-center justify-center bg-gray-100">🛡️</span>
+                    <span className="text-2xl hidden absolute inset-0 items-center justify-center bg-gray-100">🛡️</span>
                   </div>
-                  <p className="text-xs text-center text-gray-700 font-medium truncate">{skill.name}</p>
+                  <p className="text-sm text-center text-gray-700 font-medium">{skill.name}</p>
                   <p className="text-xs text-center text-gray-500 mt-1">Click to select</p>
                 </div>
               ))}
@@ -293,7 +310,7 @@ const SkillSharingApp = () => {
           </div>
         )}
 
-        {/* Selected Skills Display by Level */}
+        {/* Selected Skills Display by Level - ปรับปรุงให้แสดงแบบยาวเต็มกรอบ */}
         {sortedLevels.length > 0 && (
           <div className="mb-6 space-y-6">
             <h3 className="text-lg font-medium">Selected Skills</h3>
@@ -303,68 +320,102 @@ const SkillSharingApp = () => {
                 <div key={level} className="bg-white rounded-lg p-6 border-2 border-gray-200 shadow-sm">
                   <div className="flex items-center justify-between mb-4">
                     <h4 className="text-xl font-bold text-blue-600">LV {level}</h4>
-                    <span className="text-sm text-gray-500">{levelSkills.length} skill(s) selected</span>
+                    <div className="flex items-center gap-4">
+                      <span className="text-sm text-gray-500">{levelSkills.length} skill(s) selected</span>
+                      {selectedSkillsForActive[level] && (
+                        <span className="text-sm text-red-600 font-medium">
+                          Active: {levelSkills.find(s => s.id === selectedSkillsForActive[level])?.name}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {levelSkills.map((skill) => (
-                      <div
-                        key={skill.id}
-                        className="relative bg-gray-50 rounded-lg p-4 border border-gray-200"
-                      >
-                        <div className="flex items-center justify-between mb-3">
-                          <h5 className="font-semibold text-gray-800">{skill.name}</h5>
-                          <button
-                            onClick={() => handleRemoveSkill(level, skill.id)}
-                            className="text-red-500 hover:text-red-700 p-1 rounded hover:bg-red-50"
-                          >
-                            <Minus size={16} />
-                          </button>
-                        </div>
-                        
-                        <div className="flex gap-4">
-                          {/* Skill Icon - แก้ไขการแสดงรูป */}
-                          <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded border flex items-center justify-center flex-shrink-0 relative overflow-hidden">
-                            <img 
-                              src={skill.fullUrl} 
-                              alt={skill.name}
-                              className="w-full h-full object-cover rounded"
-                              onError={(e) => {
-                                e.target.style.display = 'none';
-                                e.target.nextElementSibling.style.display = 'flex';
+                  {/* แสดง skills แบบเต็มความกว้าง */}
+                  <div className="space-y-4">
+                    {levelSkills.map((skill) => {
+                      const isActive = selectedSkillsForActive[level] === skill.id;
+                      return (
+                        <div
+                          key={skill.id}
+                          onClick={() => handleSkillActivate(level, skill.id)}
+                          className={`relative rounded-lg p-4 border-2 cursor-pointer transition-all duration-200 ${
+                            isActive 
+                              ? 'border-red-500 bg-red-50 ring-2 ring-red-200' 
+                              : 'border-gray-200 bg-gray-50 hover:border-blue-400 hover:bg-blue-50'
+                          }`}
+                        >
+                          {/* Active indicator */}
+                          {isActive && (
+                            <div className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1">
+                              <Check size={16} />
+                            </div>
+                          )}
+                          
+                          <div className="flex items-start justify-between mb-3">
+                            <h5 className="font-semibold text-gray-800 text-lg">{skill.name}</h5>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleRemoveSkill(level, skill.id);
                               }}
-                            />
-                            <span className="text-lg hidden absolute inset-0 items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100">🛡️</span>
+                              className="text-red-500 hover:text-red-700 p-1 rounded hover:bg-red-100 transition-colors"
+                            >
+                              <Minus size={16} />
+                            </button>
                           </div>
                           
-                          {/* Skill Details */}
-                          <div className="flex-1">
-                            <p className="text-sm text-gray-600 mb-2">{skill.description}</p>
-                            <div className="space-y-1">
-                              <h6 className="text-xs font-medium text-gray-700 uppercase tracking-wide">Skills:</h6>
-                              <div className="flex flex-wrap gap-1">
-                                {skill.skills?.map((skillItem, skillIndex) => (
-                                  <div key={skillIndex} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">
-                                    {skillItem}
-                                  </div>
-                                ))}
-                              </div>
+                          <div className="flex gap-6">
+                            {/* Skill Icon - ขนาดใหญ่ขึ้น */}
+                            <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-purple-100 rounded border flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+                              <img 
+                                src={skill.fullUrl} 
+                                alt={skill.name}
+                                className="w-full h-full object-cover rounded"
+                                onError={(e) => {
+                                  e.target.style.display = 'none';
+                                  e.target.nextElementSibling.style.display = 'flex';
+                                }}
+                              />
+                              <span className="text-2xl hidden absolute inset-0 items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100">🛡️</span>
                             </div>
                             
-                            <div className="space-y-1 mt-2">
-                              <h6 className="text-xs font-medium text-gray-700 uppercase tracking-wide">Scenarios:</h6>
-                              <div className="flex flex-wrap gap-1">
-                                {skill.scenarios?.map((scenario, scenarioIndex) => (
-                                  <div key={scenarioIndex} className="text-xs bg-green-50 text-green-700 px-2 py-1 rounded">
-                                    {scenario}
+                            {/* Skill Details */}
+                            <div className="flex-1">
+                              <p className="text-sm text-gray-600 mb-3 leading-relaxed">{skill.description}</p>
+                              
+                              <div className="grid md:grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                  <h6 className="text-xs font-medium text-gray-700 uppercase tracking-wide">Skills:</h6>
+                                  <div className="flex flex-wrap gap-1">
+                                    {skill.skills?.map((skillItem, skillIndex) => (
+                                      <div key={skillIndex} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded border border-blue-200">
+                                        {skillItem}
+                                      </div>
+                                    ))}
                                   </div>
-                                ))}
+                                </div>
+                                
+                                <div className="space-y-2">
+                                  <h6 className="text-xs font-medium text-gray-700 uppercase tracking-wide">Scenarios:</h6>
+                                  <div className="flex flex-wrap gap-1">
+                                    {skill.scenarios?.map((scenario, scenarioIndex) => (
+                                      <div key={scenarioIndex} className="text-xs bg-green-50 text-green-700 px-2 py-1 rounded border border-green-200">
+                                        {scenario}
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
+                          
+                          {/* Click hint */}
+                          <div className="mt-3 text-xs text-center text-gray-500">
+                            {isActive ? 'Active Skill (Click to deactivate)' : 'Click to activate this skill'}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               );
