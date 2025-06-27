@@ -17,7 +17,7 @@ const SkillSharingApp = () => {
     40: '40-45-50', 45: '40-45-50', 50: '40-45-50'
   };
 
-  // Sample image data for each skill set
+  // Sample image data for each skill set - แก้ไข path สำหรับ GitHub Pages
   const imageData = {
     '5-10-15': [
       { 
@@ -61,8 +61,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img2_1', 
         name: 'Sword Iron', 
-        thumbnailUrl: '/api/placeholder/60/60',
-        fullUrl: '/api/placeholder/120/120',
+        thumbnailUrl: './images/20-35/sword-iron.webp',
+        fullUrl: './images/20-35/sword-iron.webp',
         description: 'Iron forged sword with enhanced damage',
         skills: ['Attack +25', 'Critical: 15%', 'Durability: 120'],
         scenarios: ['Advanced Combat', 'Raid Leader', 'Tournament Fight']
@@ -70,8 +70,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img2_2', 
         name: 'Shield Iron', 
-        thumbnailUrl: '/api/placeholder/60/60',
-        fullUrl: '/api/placeholder/120/120',
+        thumbnailUrl: './images/20-35/shield-iron.webp',
+        fullUrl: './images/20-35/shield-iron.webp',
         description: 'Iron shield with improved defense',
         skills: ['Defense +20', 'Block Rate: 50%', 'Counter Attack: 10%'],
         scenarios: ['Tank Role', 'Guild War', 'Boss Protection']
@@ -79,8 +79,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img2_3', 
         name: 'Armor Leather', 
-        thumbnailUrl: '/api/placeholder/60/60',
-        fullUrl: '/api/placeholder/120/120',
+        thumbnailUrl: './images/20-35/armor-leather.webp',
+        fullUrl: './images/20-35/armor-leather.webp',
         description: 'Leather armor for mobility and protection',
         skills: ['Defense +15', 'Agility +5', 'Stealth: +10%'],
         scenarios: ['Rogue Build', 'Speed Run', 'Assassin Mission']
@@ -88,8 +88,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img2_4', 
         name: 'Staff Magic', 
-        thumbnailUrl: '/api/placeholder/60/60',
-        fullUrl: '/api/placeholder/120/120',
+        thumbnailUrl: './images/20-35/staff-magic.webp',
+        fullUrl: './images/20-35/staff-magic.webp',
         description: 'Magical staff that amplifies spells',
         skills: ['Magic Power +30', 'MP Cost -20%', 'Cast Speed +15%'],
         scenarios: ['Mage Build', 'Magic Tournament', 'Spell Research']
@@ -99,8 +99,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img3_1', 
         name: 'Sword Master', 
-        thumbnailUrl: '/api/placeholder/60/60',
-        fullUrl: '/api/placeholder/120/120',
+        thumbnailUrl: './images/40-50/sword-master.webp',
+        fullUrl: './images/40-50/sword-master.webp',
         description: 'Legendary sword of master warriors',
         skills: ['Attack +50', 'Critical: 35%', 'Life Steal: 10%'],
         scenarios: ['Legend Quest', 'Ultimate Boss', 'Championship']
@@ -108,8 +108,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img3_2', 
         name: 'Shield Dragon', 
-        thumbnailUrl: '/api/placeholder/60/60',
-        fullUrl: '/api/placeholder/120/120',
+        thumbnailUrl: './images/40-50/shield-dragon.webp',
+        fullUrl: './images/40-50/shield-dragon.webp',
         description: 'Dragon-scale shield with fire resistance',
         skills: ['Defense +40', 'Fire Resist: 80%', 'Reflect Damage: 25%'],
         scenarios: ['Dragon Hunt', 'Fire Dungeon', 'Epic Raid']
@@ -117,8 +117,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img3_3', 
         name: 'Armor Mythril', 
-        thumbnailUrl: '/api/placeholder/60/60',
-        fullUrl: '/api/placeholder/120/120',
+        thumbnailUrl: './images/40-50/armor-mythril.webp',
+        fullUrl: './images/40-50/armor-mythril.webp',
         description: 'Mythril armor with magical properties',
         skills: ['Defense +35', 'Magic Resist: 60%', 'HP Regen: +5/s'],
         scenarios: ['Mythic Battle', 'End Game', 'Legendary Mode']
@@ -126,8 +126,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img3_4', 
         name: 'Ring Power', 
-        thumbnailUrl: '/api/placeholder/60/60',
-        fullUrl: '/api/placeholder/120/120',
+        thumbnailUrl: './images/40-50/ring-power.webp',
+        fullUrl: './images/40-50/ring-power.webp',
         description: 'Ancient ring of ultimate power',
         skills: ['All Stats +20', 'EXP Gain: +50%', 'Rare Drop: +25%'],
         scenarios: ['Master Class', 'Perfect Game', 'Ultimate Challenge']
@@ -273,8 +273,17 @@ const SkillSharingApp = () => {
                   onClick={() => handleSkillSelect(skill.id)}
                   className="cursor-pointer p-3 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 bg-white"
                 >
-                  <div className="w-full h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded border flex items-center justify-center mb-2">
-                    <span className="text-xs font-medium text-gray-600">🛡️</span>
+                  <div className="w-full h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded border flex items-center justify-center mb-2 relative overflow-hidden">
+                    <img 
+                      src={skill.thumbnailUrl} 
+                      alt={skill.name}
+                      className="w-full h-full object-cover rounded"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextElementSibling.style.display = 'flex';
+                      }}
+                    />
+                    <span className="text-lg hidden absolute inset-0 items-center justify-center bg-gray-100">🛡️</span>
                   </div>
                   <p className="text-xs text-center text-gray-700 font-medium truncate">{skill.name}</p>
                   <p className="text-xs text-center text-gray-500 mt-1">Click to select</p>
@@ -314,9 +323,18 @@ const SkillSharingApp = () => {
                         </div>
                         
                         <div className="flex gap-4">
-                          {/* Skill Icon */}
-                          <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded border flex items-center justify-center flex-shrink-0">
-                            <span className="text-lg">🛡️</span>
+                          {/* Skill Icon - แก้ไขการแสดงรูป */}
+                          <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded border flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+                            <img 
+                              src={skill.fullUrl} 
+                              alt={skill.name}
+                              className="w-full h-full object-cover rounded"
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                                e.target.nextElementSibling.style.display = 'flex';
+                              }}
+                            />
+                            <span className="text-lg hidden absolute inset-0 items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100">🛡️</span>
                           </div>
                           
                           {/* Skill Details */}
