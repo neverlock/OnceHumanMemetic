@@ -57,14 +57,34 @@ const SkillSharingApp = () => {
         description: 'Pickaxe Durability is doubled. +30% yield when logging with the Pickaxe, and gain 150% of the resources when you completely destroy a tree',
         skills: ['Prospector', 'Gathering', 'Improved Formula: Pickaxe'],
         scenarios: ['Manibus', 'Evolution\'s Call', 'Prismverse\'s Clash','Way Of Winter']
+      },
+      { 
+        id: 'img1_5', 
+        name: 'Member 5', 
+        thumbnailUrl: './images/5-15/5.webp',
+        fullUrl: './images/5-15/5.webp',
+        description: 'Description for member 5',
+        skills: ['Skill A', 'Skill B', 'Skill C'],
+        scenarios: ['Scenario 1', 'Scenario 2', 'Scenario 3']
+      },
+      { 
+        id: 'img1_6', 
+        name: 'Member 6', 
+        thumbnailUrl: './images/5-15/6.webp',
+        fullUrl: './images/5-15/6.webp',
+        description: 'Description for member 6',
+        skills: ['Skill A', 'Skill B', 'Skill C'],
+        scenarios: ['Scenario 1', 'Scenario 2', 'Scenario 3']
       }
+      // *** ให้เพิ่มข้อมูล members ตัวที่ 7-43 ตามรูปแบบนี้ ***
+      // แต่ละ member จะมีข้อมูลเฉพาะตัว ไม่สามารถใช้ loop ได้
     ],
     '20-25-30-35': [
       { 
         id: 'img2_1', 
         name: 'Sword Iron', 
-        thumbnailUrl: './images/20-35/sword-iron.webp',
-        fullUrl: './images/20-35/sword-iron.webp',
+        thumbnailUrl: './images/20-35/1.webp',
+        fullUrl: './images/20-35/1.webp',
         description: 'Iron forged sword with enhanced damage',
         skills: ['Attack +25', 'Critical: 15%', 'Durability: 120'],
         scenarios: ['Advanced Combat', 'Raid Leader', 'Tournament Fight']
@@ -72,8 +92,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img2_2', 
         name: 'Shield Iron', 
-        thumbnailUrl: './images/20-35/shield-iron.webp',
-        fullUrl: './images/20-35/shield-iron.webp',
+        thumbnailUrl: './images/20-35/2.webp',
+        fullUrl: './images/20-35/2.webp',
         description: 'Iron shield with improved defense',
         skills: ['Defense +20', 'Block Rate: 50%', 'Counter Attack: 10%'],
         scenarios: ['Tank Role', 'Guild War', 'Boss Protection']
@@ -81,8 +101,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img2_3', 
         name: 'Armor Leather', 
-        thumbnailUrl: './images/20-35/armor-leather.webp',
-        fullUrl: './images/20-35/armor-leather.webp',
+        thumbnailUrl: './images/20-35/3.webp',
+        fullUrl: './images/20-35/3.webp',
         description: 'Leather armor for mobility and protection',
         skills: ['Defense +15', 'Agility +5', 'Stealth: +10%'],
         scenarios: ['Rogue Build', 'Speed Run', 'Assassin Mission']
@@ -90,19 +110,39 @@ const SkillSharingApp = () => {
       { 
         id: 'img2_4', 
         name: 'Staff Magic', 
-        thumbnailUrl: './images/20-35/staff-magic.webp',
-        fullUrl: './images/20-35/staff-magic.webp',
+        thumbnailUrl: './images/20-35/4.webp',
+        fullUrl: './images/20-35/4.webp',
         description: 'Magical staff that amplifies spells',
         skills: ['Magic Power +30', 'MP Cost -20%', 'Cast Speed +15%'],
         scenarios: ['Mage Build', 'Magic Tournament', 'Spell Research']
+      },
+      { 
+        id: 'img2_5', 
+        name: 'Member 5', 
+        thumbnailUrl: './images/20-35/5.webp',
+        fullUrl: './images/20-35/5.webp',
+        description: 'Description for member 5',
+        skills: ['Skill A', 'Skill B', 'Skill C'],
+        scenarios: ['Scenario 1', 'Scenario 2', 'Scenario 3']
+      },
+      { 
+        id: 'img2_6', 
+        name: 'Member 6', 
+        thumbnailUrl: './images/20-35/6.webp',
+        fullUrl: './images/20-35/6.webp',
+        description: 'Description for member 6',
+        skills: ['Skill A', 'Skill B', 'Skill C'],
+        scenarios: ['Scenario 1', 'Scenario 2', 'Scenario 3']
       }
+      // *** ให้เพิ่มข้อมูล members ตัวที่ 7-55 ตามรูปแบบนี้ ***
+      // แต่ละ member จะมีข้อมูลเฉพาะตัว ไม่สามารถใช้ loop ได้
     ],
     '40-45-50': [
       { 
         id: 'img3_1', 
         name: 'Sword Master', 
-        thumbnailUrl: './images/40-50/sword-master.webp',
-        fullUrl: './images/40-50/sword-master.webp',
+        thumbnailUrl: './images/40-50/1.webp',
+        fullUrl: './images/40-50/1.webp',
         description: 'Legendary sword of master warriors',
         skills: ['Attack +50', 'Critical: 35%', 'Life Steal: 10%'],
         scenarios: ['Legend Quest', 'Ultimate Boss', 'Championship']
@@ -110,8 +150,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img3_2', 
         name: 'Shield Dragon', 
-        thumbnailUrl: './images/40-50/shield-dragon.webp',
-        fullUrl: './images/40-50/shield-dragon.webp',
+        thumbnailUrl: './images/40-50/2.webp',
+        fullUrl: './images/40-50/2.webp',
         description: 'Dragon-scale shield with fire resistance',
         skills: ['Defense +40', 'Fire Resist: 80%', 'Reflect Damage: 25%'],
         scenarios: ['Dragon Hunt', 'Fire Dungeon', 'Epic Raid']
@@ -119,8 +159,8 @@ const SkillSharingApp = () => {
       { 
         id: 'img3_3', 
         name: 'Armor Mythril', 
-        thumbnailUrl: './images/40-50/armor-mythril.webp',
-        fullUrl: './images/40-50/armor-mythril.webp',
+        thumbnailUrl: './images/40-50/3.webp',
+        fullUrl: './images/40-50/3.webp',
         description: 'Mythril armor with magical properties',
         skills: ['Defense +35', 'Magic Resist: 60%', 'HP Regen: +5/s'],
         scenarios: ['Mythic Battle', 'End Game', 'Legendary Mode']
@@ -128,12 +168,32 @@ const SkillSharingApp = () => {
       { 
         id: 'img3_4', 
         name: 'Ring Power', 
-        thumbnailUrl: './images/40-50/ring-power.webp',
-        fullUrl: './images/40-50/ring-power.webp',
+        thumbnailUrl: './images/40-50/4.webp',
+        fullUrl: './images/40-50/4.webp',
         description: 'Ancient ring of ultimate power',
         skills: ['All Stats +20', 'EXP Gain: +50%', 'Rare Drop: +25%'],
         scenarios: ['Master Class', 'Perfect Game', 'Ultimate Challenge']
+      },
+      { 
+        id: 'img3_5', 
+        name: 'Member 5', 
+        thumbnailUrl: './images/40-50/5.webp',
+        fullUrl: './images/40-50/5.webp',
+        description: 'Description for member 5',
+        skills: ['Skill A', 'Skill B', 'Skill C'],
+        scenarios: ['Scenario 1', 'Scenario 2', 'Scenario 3']
+      },
+      { 
+        id: 'img3_6', 
+        name: 'Member 6', 
+        thumbnailUrl: './images/40-50/6.webp',
+        fullUrl: './images/40-50/6.webp',
+        description: 'Description for member 6',
+        skills: ['Skill A', 'Skill B', 'Skill C'],
+        scenarios: ['Scenario 1', 'Scenario 2', 'Scenario 3']
       }
+      // *** ให้เพิ่มข้อมูล members ตัวที่ 7-42 ตามรูปแบบนี้ ***
+      // แต่ละ member จะมีข้อมูลเฉพาะตัว ไม่สามารถใช้ loop ได้
     ]
   };
 
